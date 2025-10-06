@@ -1,0 +1,395 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>QuilSweet - Alfajores Artesanales de Quilmes Oeste</title>
+    <style>
+        /* Reset y estilos base */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Arial', sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: #f9f9f9;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header */
+        header {
+            background: linear-gradient(135deg, #d4a574, #c89b6a); /* Tonos cálidos inspirados en dulce de leche */
+            color: white;
+            padding: 1rem 0;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .logo {
+            font-size: 2rem;
+            font-weight: bold;
+            text-decoration: none;
+            color: white;
+        }
+        .nav-links {
+            list-style: none;
+            display: flex;
+        }
+        .nav-links li {
+            margin-left: 2rem;
+        }
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        .nav-links a:hover {
+            color: #f0e6d2;
+        }
+
+        /* Hero Section */
+        .hero {
+            background: url('https://via.placeholder.com/1200x600?text=Alfajores+QuilSweet') no-repeat center/cover; /* Reemplaza con imagen real de alfajores */
+            height: 60vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: white;
+            position: relative;
+        }
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.5); /* Overlay para legibilidad */
+        }
+        .hero-content {
+            position: relative;
+            z-index: 1;
+            max-width: 800px;
+        }
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+        .hero p {
+            font-size: 1.5rem;
+            margin-bottom: 2rem;
+        }
+        .btn {
+            background: #c89b6a;
+            color: white;
+            padding: 1rem 2rem;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: background 0.3s;
+            display: inline-block;
+        }
+        .btn:hover {
+            background: #d4a574;
+        }
+
+        /* Sección de Productos */
+        .products {
+            padding: 4rem 0;
+            background: white;
+        }
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+            color: #c89b6a;
+        }
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); /* Ajustado para mejor espaciado en 3 columnas */
+            gap: 2rem;
+        }
+        .product-card {
+            background: #f9f9f9;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            transition: transform 0.3s;
+        }
+        .product-card:hover {
+            transform: translateY(-5px);
+        }
+        .product-image {
+            width: 100%;
+            height: 200px;
+            background: #ddd; /* Placeholder para imagen */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1rem;
+            color: #666;
+        }
+        .product-info {
+            padding: 1.5rem;
+            text-align: center;
+        }
+        .product-info h3 {
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+            color: #c89b6a;
+        }
+        .product-size {
+            font-size: 1.1rem;
+            color: #666;
+            margin-bottom: 0.5rem;
+        }
+        .product-info p {
+            margin-bottom: 1rem;
+            font-size: 0.95rem;
+        }
+        .price {
+            font-size: 1.4rem;
+            font-weight: bold;
+            color: #d4a574;
+        }
+
+        /* Sección Sobre Nosotros */
+        .about {
+            padding: 4rem 0;
+            background: #f0e6d2;
+            text-align: center;
+        }
+        .about-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        .about h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            color: #c89b6a;
+        }
+        .about p {
+            font-size: 1.2rem;
+            margin-bottom: 1rem;
+        }
+
+        /* Sección Contacto */
+        .contact {
+            padding: 4rem 0;
+            background: white;
+            text-align: center;
+        }
+        .contact-info {
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+            margin-top: 2rem;
+        }
+        .contact-item {
+            margin: 1rem;
+            flex: 1;
+            min-width: 200px;
+        }
+        .contact-item h3 {
+            color: #c89b6a;
+            margin-bottom: 0.5rem;
+        }
+        .social-link {
+            color: #c89b6a;
+            text-decoration: none;
+            font-weight: bold;
+        }
+        .social-link:hover {
+            text-decoration: underline;
+        }
+
+        /* Footer */
+        footer {
+            background: #333;
+            color: white;
+            text-align: center;
+            padding: 2rem 0;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .nav-links {
+                flex-direction: column;
+                gap: 1rem;
+            }
+            .hero h1 {
+                font-size: 2rem;
+            }
+            .hero p {
+                font-size: 1.2rem;
+            }
+            .products-grid {
+                grid-template-columns: 1fr;
+            }
+            .contact-info {
+                flex-direction: column;
+                align-items: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav class="container">
+            <a href="#" class="logo">QuilSweet</a>
+            <ul class="nav-links">
+                <li><a href="#inicio">Inicio</a></li>
+                <li><a href="#productos">Productos</a></li>
+                <li><a href="#sobre-nosotros">Sobre Nosotros</a></li>
+                <li><a href="#contacto">Contacto</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section id="inicio" class="hero">
+        <div class="hero-content">
+            <h1>¡Descubre el Sabor Auténtico de QuilSweet!</h1>
+            <p>Alfajores caseros hechos con amor en Quilmes Oeste. Dulce de leche, frambuesa y coco en tamaños normal y grande para endulzar tu día.</p>
+            <a href="#productos" class="btn">Ver Productos</a>
+        </div>
+    </section>
+
+    <section id="productos" class="products">
+        <div class="container">
+            <h2 class="section-title">Nuestros Alfajores</h2>
+            <div class="products-grid">
+                <!-- Fila 1: Tamaños Normales -->
+                <!-- Alfajor Clásico Normal -->
+                <div class="product-card">
+                    <div class="product-image">Alfajor Clásico<br>Normal - Dulce de Leche</div>
+                    <div class="product-info">
+                        <h3>Alfajor Clásico</h3>
+                        <div class="product-size">Tamaño Normal</div>
+                        <p>El tradicional alfajor relleno de dulce de leche cremoso, cubierto de chocolate. ¡Irresistible!</p>
+                        <div class="price">$15 por unidad</div>
+                    </div>
+                </div>
+
+                <!-- Alfajor Frambuesa Normal -->
+                <div class="product-card">
+                    <div class="product-image">Alfajor Frambuesa<br>Normal</div>
+                    <div class="product-info">
+                        <h3>Alfajor Frambuesa</h3>
+                        <div class="product-size">Tamaño Normal</div>
+                        <p>Una explosión de sabor con relleno de frambuesa fresca y dulce de leche. Perfecto para los amantes de las frutas.</p>
+                        <div class="price">$16 por unidad</div>
+                    </div>
+                </div>
+
+                <!-- Alfajor Coco Normal -->
+                <div class="product-card">
+                    <div class="product-image">Alfajor Coco<br>Normal</div>
+                    <div class="product-info">
+                        <h3>Alfajor Coco</h3>
+                        <div class="product-size">Tamaño Normal</div>
+                        <p>Delicioso relleno de coco rallado y dulce de leche, bañado en chocolate blanco. ¡Exótico y crujiente!</p>
+                        <div class="price">$16 por unidad</div>
+                    </div>
+                </div>
+
+                <!-- Fila 2: Tamaños Grandes -->
+                <!-- Alfajor Clásico Grande -->
+                <div class="product-card">
+                    <div class="product-image">Alfajor Clásico<br>Grande - Dulce de Leche</div>
+                    <div class="product-info">
+                        <h3>Alfajor Clásico</h3>
+                        <div class="product-size">Tamaño Grande</div>
+                        <p>El tradicional alfajor relleno de dulce de leche cremoso, cubierto de chocolate. ¡Porción extra de placer!</p>
+                        <div class="price">$25 por unidad</div>
+                    </div>
+                </div>
+
+                <!-- Alfajor Frambuesa Grande -->
+                <div class="product-card">
+                    <div class="product-image">Alfajor Frambuesa<br>Grande</div>
+                    <div class="product-info">
+                        <h3>Alfajor Frambuesa</h3>
+                        <div class="product-size">Tamaño Grande</div>
+                        <p>Una explosión de sabor con relleno de frambuesa fresca y dulce de leche. ¡Más sabor en cada bocado!</p>
+                        <div class="price">$26 por unidad</div>
+                    </div>
+                </div>
+
+                <!-- Alfajor Coco Grande -->
+                <div class="product-card">
+                    <div class="product-image">Alfajor Coco<br>Grande</div>
+                    <div class="product-info">
+                        <h3>Alfajor Coco</h3>
+                        <div class="product-size">Tamaño Grande</div>
+                        <p>Delicioso relleno de coco rallado y dulce de leche, bañado en chocolate blanco. ¡Exótico y crujiente en gran formato!</p>
+                        <div class="price">$26 por unidad</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="sobre-nosotros" class="about">
+        <div class="container">
+            <div class="about-content">
+                <h2>Sobre QuilSweet</h2>
+                <p>En QuilSweet, traemos el auténtico sabor de Argentina directamente a tu mesa. Nuestros alfajores son preparados a mano con ingredientes frescos y de la mejor calidad, inspirados en la tradición argentina.</p>
+                <p>Residimos en Quilmes Oeste, donde cada bocado es un pedacito de hogar. ¡Ven y prueba nuestra pasión por los dulces en tamaños normal y grande!</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="contacto" class="contact">
+        <div class="container">
+            <h2 class="section-title">Contacto</h2>
+            <p>¡Estamos listos para endulzar tu día! Visítanos o contáctanos para pedidos.</p>
+            <div class="contact-info">
+                <div class="contact-item">
+                    <h3>Dirección</h3>
+                    <p>Quilmes Oeste, Buenos Aires, Argentina</p>
+                </div>
+                <div class="contact-item">
+                    <h3>Teléfono</h3>
+                    <p>+54 9 11 3863-7883</p>
+                </div>
+                <div class="contact-item">
+                    <h3>Email</h3>
+                    <p><a href="mailto:sweettemptationquilmes@gmail.com">sweettemptationquilmes@gmail.com</a></p>
+                </div>
+                <div class="contact-item">
+                    <h3>Instagram</h3>
+                    <p><a href="https://www.instagram.com/quilsweet_" target="_blank" class="social-link">@quilsweet_</a></p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2023 QuilSweet. Todos los derechos reservados. | Hecho con ❤️ en Quilmes Oeste, Argentina</p>
+        </div>
+    </footer>
+
+    <script>
+        // Smooth scrolling para enlaces de navegación
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+    </script>
+</body>
+</html>
