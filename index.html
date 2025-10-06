@@ -25,7 +25,7 @@
 
         /* Header */
         header {
-            background: radial-gradient(circle at center, #7b4138 0%, #870423 100%); /* Tonos cálidos inspirados en dulce de leche */
+            background: radial-gradient(circle at center, #c61740 0%, #870423 100%); /* Tonos cálidos inspirados en dulce de leche */
             color: white;
             padding: 1rem 0;
             box-shadow: 0 2px 5px rgba(0,0,0,0.1);
@@ -132,13 +132,36 @@
         .product-image {
             width: 100%;
             height: 200px;
-            background: #ddd; /* Placeholder para imagen */
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 1rem;
-            color: #666;
+            overflow: hidden; /* Asegura que la imagen no se desborde */
         }
+        .product-image img { /* Estilo base: TODAS las imágenes centradas por defecto */
+            width: 100%;
+            height: 100%;
+            object-fit: cover; /* Cubre el área manteniendo la relación de aspecto */
+            object-position: center center; /* CENTRO por defecto para todas */
+            display: block; /* Elimina el espacio extra debajo de la imagen */
+        }
+
+        /* CLASES FÁCILES PARA AJUSTAR CADA IMAGEN INDIVIDUALMENTE */
+        /* Para SUBIR el producto en la vista (muestra más de la parte inferior de la imagen) */
+        .product-image.shift-up-20 img {
+            object-position: center 30%; /* Sube ~20% - prueba esto si el producto está muy abajo */
+        }
+        .product-image.shift-up-40 img {
+            object-position: center 20%; /* Sube ~40% - más fuerte */
+        }
+        /* Para BAJAR el producto en la vista (muestra más de la parte superior de la imagen) */
+        .product-image.shift-down-20 img {
+            object-position: center 70%; /* Baja ~20% - prueba esto si el producto está muy arriba */
+        }
+        .product-image.shift-down-40 img {
+            object-position: center 80%; /* Baja ~40% - más fuerte */
+        }
+        /* Si necesitas más ajustes, agrega aquí clases similares (ej: shift-down-30 con center 75%) */
+
         .product-info {
             padding: 1.5rem;
             text-align: center;
@@ -166,8 +189,9 @@
         /* Sección Sobre Nosotros */
         .about {
             padding: 4rem 0;
-            background: #ce8675;
+            background: #a61f3e;
             text-align: center;
+			color: white; /* <-- Esto hace que todo el texto en esta sección sea blanco */
         }
         .about-content {
             max-width: 800px;
@@ -269,70 +293,82 @@
             <h2 class="section-title">Nuestros Alfajores</h2>
             <div class="products-grid">
                 <!-- Fila 1: Tamaños Normales -->
-                <!-- Alfajor Clásico Normal -->
+                <!-- Alfajor Clásico Normal (EJEMPLO: Bajado un poco - shift-down-20) -->
                 <div class="product-card">
-                    <div class="product-image">Alfajor Clásico<br>Normal - Dulce de Leche</div>
+                    <div class="product-image"> <!-- Agrega aquí la clase para bajar -->
+                        <img src="img/alfajor-clasico-normal.jpg" alt="Alfajor Clásico Normal">
+                    </div>
                     <div class="product-info">
                         <h3>Alfajor Clásico</h3>
                         <div class="product-size">Tamaño Normal</div>
                         <p>El tradicional alfajor relleno de dulce de leche cremoso, cubierto de chocolate. ¡Irresistible!</p>
-                        <div class="price">$15 por unidad</div>
+                        <div class="price">$1200 por unidad</div>
                     </div>
                 </div>
 
-                <!-- Alfajor Frambuesa Normal -->
+                <!-- Alfajor Frambuesa Normal (EJEMPLO: Subido un poco - shift-up-20) -->
                 <div class="product-card">
-                    <div class="product-image">Alfajor Frambuesa<br>Normal</div>
+                    <div class="product-image shift-up-40"> <!-- Agrega aquí la clase para subir -->
+                        <img src="img/alfajor-frambuesa-normal.jpg" alt="Alfajor Frambuesa Normal">
+                    </div>
                     <div class="product-info">
                         <h3>Alfajor Frambuesa</h3>
                         <div class="product-size">Tamaño Normal</div>
                         <p>Una explosión de sabor con relleno de frambuesa fresca y dulce de leche. Perfecto para los amantes de las frutas.</p>
-                        <div class="price">$16 por unidad</div>
+                        <div class="price">$1300 por unidad</div>
                     </div>
                 </div>
 
-                <!-- Alfajor Coco Normal -->
+                <!-- Alfajor Coco Normal (CENTRADO - sin clase extra) -->
                 <div class="product-card">
-                    <div class="product-image">Alfajor Coco<br>Normal</div>
+                    <div class="product-image"> <!-- Sin cambio: centrado por defecto -->
+                        <img src="img/alfajor-coco-normal.jpg" alt="Alfajor Coco Normal">
+                    </div>
                     <div class="product-info">
                         <h3>Alfajor Coco</h3>
                         <div class="product-size">Tamaño Normal</div>
                         <p>Delicioso relleno de coco rallado y dulce de leche, bañado en chocolate blanco. ¡Exótico y crujiente!</p>
-                        <div class="price">$16 por unidad</div>
+                        <div class="price">$1500 por unidad</div>
                     </div>
                 </div>
 
                 <!-- Fila 2: Tamaños Grandes -->
-                <!-- Alfajor Clásico Grande -->
+                <!-- Alfajor Clásico Grande (CENTRADO - sin clase extra) -->
                 <div class="product-card">
-                    <div class="product-image">Alfajor Clásico<br>Grande - Dulce de Leche</div>
+                    <div class="product-image"> <!-- Sin cambio: centrado por defecto -->
+                        <img src="img/alfajor-clasico-grande.jpg" alt="Alfajor Clásico Grande">
+                    </div>
                     <div class="product-info">
                         <h3>Alfajor Clásico</h3>
                         <div class="product-size">Tamaño Grande</div>
                         <p>El tradicional alfajor relleno de dulce de leche cremoso, cubierto de chocolate. ¡Porción extra de placer!</p>
-                        <div class="price">$25 por unidad</div>
+                        <div class="price">$1700 por unidad</div>
                     </div>
                 </div>
 
-                <!-- Alfajor Frambuesa Grande -->
+                <!-- Alfajor Frambuesa Grande (CENTRADO - sin clase extra) -->
                 <div class="product-card">
-                    <div class="product-image">Alfajor Frambuesa<br>Grande</div>
+                    <div class="product-image"> <!-- Sin cambio: centrado por defecto -->
+                        <img src="img/alfajor-frambuesa-grande.jpg" alt="Alfajor Frambuesa Grande">
+                    </div>
                     <div class="product-info">
                         <h3>Alfajor Frambuesa</h3>
                         <div class="product-size">Tamaño Grande</div>
                         <p>Una explosión de sabor con relleno de frambuesa fresca y dulce de leche. ¡Más sabor en cada bocado!</p>
-                        <div class="price">$26 por unidad</div>
+                        <div class="price">$1800 por unidad</div>
                     </div>
                 </div>
 
-                <!-- Alfajor Coco Grande -->
+                <!-- Alfajor Coco Grande (CENTRADO - sin clase extra) -->
                 <div class="product-card">
-                    <div class="product-image">Alfajor Coco<br>Grande</div>
+                    <div class="product-image"> <!-- Sin cambio: centrado por defecto -->
+                        <img src="img/alfajor-coco-grande.jpg" alt="Alfajor Coco Grande">
+                    </div>
                     <div class="product-info">
                         <h3>Alfajor Coco</h3>
                         <div class="product-size">Tamaño Grande</div>
                         <p>Delicioso relleno de coco rallado y dulce de leche, bañado en chocolate blanco. ¡Exótico y crujiente en gran formato!</p>
-                        <div class="price">$26 por unidad</div>
+                        <div class="price">$2000 por unidad</div>
                     </div>
                 </div>
             </div>
@@ -384,12 +420,4 @@
         // Smooth scrolling para enlaces de navegación
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                document.querySelector(this.getAttribute('href')).scrollIntoView({
-                    behavior: 'smooth'
-                });
-            });
-        });
-    </script>
-</body>
-</html>
+                e.preventDefault
