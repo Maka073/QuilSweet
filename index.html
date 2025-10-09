@@ -25,7 +25,7 @@
 
         /* Header */
         header {
-            background: radial-gradient(circle at center, #c61740 0%, #870423 100%); /* Tonos cálidos inspirados en dulce de leche */
+            background: radial-gradient(circle at center, #c61740 0%, #870423 100%);
             color: white;
             padding: 1rem 0;
             box-shadow: 0 2px 5px rgba(0,0,0,0.1);
@@ -59,7 +59,7 @@
 
         /* Hero Section */
         .hero {
-            background: url('img/background.jpg') no-repeat center/cover; /* Reemplaza con imagen real de alfajores */
+            background: url('img/background.jpg') no-repeat center/cover;
             height: 60vh;
             display: flex;
             align-items: center;
@@ -75,7 +75,7 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: rgba(0,0,0,0.5); /* Overlay para legibilidad */
+            background: rgba(0,0,0,0.5);
         }
         .hero-content {
             position: relative;
@@ -116,7 +116,7 @@
         }
         .products-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); /* Ajustado para mejor espaciado en 3 columnas */
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
             gap: 2rem;
         }
         .product-card {
@@ -125,6 +125,7 @@
             overflow: hidden;
             box-shadow: 0 5px 15px rgba(0,0,0,0.1);
             transition: transform 0.3s;
+            cursor: pointer;
         }
         .product-card:hover {
             transform: translateY(-5px);
@@ -135,32 +136,31 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            overflow: hidden; /* Asegura que la imagen no se desborde */
+            overflow: hidden;
         }
-        .product-image img { /* Estilo base: TODAS las imágenes centradas por defecto */
+        .product-image img {
             width: 100%;
             height: 100%;
-            object-fit: cover; /* Cubre el área manteniendo la relación de aspecto */
-            object-position: center center; /* CENTRO por defecto para todas */
-            display: block; /* Elimina el espacio extra debajo de la imagen */
+            object-fit: cover;
+            object-position: center center;
+            display: block;
         }
 
-        /* CLASES FÁCILES PARA AJUSTAR CADA IMAGEN INDIVIDUALMENTE */
-        /* Para SUBIR el producto en la vista (muestra más de la parte inferior de la imagen) */
+        .product-image.shift-up-10 img {
+            object-position: center 40%;
+        }
         .product-image.shift-up-20 img {
-            object-position: center 30%; /* Sube ~20% - prueba esto si el producto está muy abajo */
+            object-position: center 30%;
         }
         .product-image.shift-up-40 img {
-            object-position: center 20%; /* Sube ~40% - más fuerte */
+            object-position: center 20%;
         }
-        /* Para BAJAR el producto en la vista (muestra más de la parte superior de la imagen) */
         .product-image.shift-down-20 img {
-            object-position: center 70%; /* Baja ~20% - prueba esto si el producto está muy arriba */
+            object-position: center 70%;
         }
         .product-image.shift-down-40 img {
-            object-position: center 80%; /* Baja ~40% - más fuerte */
+            object-position: center 80%;
         }
-        /* Si necesitas más ajustes, agrega aquí clases similares (ej: shift-down-30 con center 75%) */
 
         .product-info {
             padding: 1.5rem;
@@ -186,12 +186,183 @@
             color: #d4a574;
         }
 
+        /* Modal Styles */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.7);
+            animation: fadeIn 0.3s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        .modal-content {
+            background-color: white;
+            margin: 5% auto;
+            padding: 0;
+            border-radius: 15px;
+            width: 90%;
+            max-width: 800px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.3);
+            animation: slideIn 0.3s ease;
+            overflow: hidden;
+        }
+
+        @keyframes slideIn {
+            from {
+                transform: translateY(-50px);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        .modal-body {
+            display: flex;
+            flex-direction: row;
+        }
+
+        .modal-image {
+            flex: 1;
+            min-width: 300px;
+            max-width: 400px;
+            background-color: #f5f5f5;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 2rem;
+        }
+
+        .modal-image img {
+            width: 100%;
+            height: auto;
+            object-fit: contain;
+            border-radius: 10px;
+        }
+
+        .modal-details {
+            flex: 1;
+            padding: 2.5rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .modal-details h2 {
+            font-size: 2rem;
+            color: #c89b6a;
+            margin-bottom: 0.5rem;
+        }
+
+        .modal-details .modal-size {
+            font-size: 1.2rem;
+            color: #666;
+            margin-bottom: 1rem;
+            font-weight: 500;
+        }
+
+        .modal-details .modal-description {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: #555;
+            margin-bottom: 1.5rem;
+        }
+
+        .modal-details .modal-price {
+            font-size: 2rem;
+            font-weight: bold;
+            color: #c61740;
+            margin-bottom: 2rem;
+        }
+
+        .modal-cta {
+            background: linear-gradient(135deg, #c61740 0%, #870423 100%);
+            color: white;
+            padding: 1.5rem;
+            border-radius: 10px;
+            text-align: center;
+            margin-top: auto;
+        }
+
+        .modal-cta p {
+            font-size: 1.15rem;
+            margin-bottom: 1rem;
+            font-weight: 500;
+        }
+
+        .modal-cta-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .cta-button {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: white;
+            color: #c61740;
+            padding: 0.8rem 1.5rem;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: all 0.3s;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+        }
+
+        .cta-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 15px rgba(0,0,0,0.3);
+            background: #f0e6d2;
+        }
+
+        .cta-button svg {
+            width: 24px;
+            height: 24px;
+        }
+
+        .close {
+            position: absolute;
+            right: 20px;
+            top: 20px;
+            color: #aaa;
+            font-size: 35px;
+            font-weight: bold;
+            cursor: pointer;
+            z-index: 1;
+            transition: color 0.3s;
+            background: white;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            line-height: 1;
+        }
+
+        .close:hover,
+        .close:focus {
+            color: #c61740;
+        }
+
         /* Sección Sobre Nosotros */
         .about {
             padding: 4rem 0;
             background: #a61f3e;
             text-align: center;
-			color: white; /* <-- Esto hace que todo el texto en esta sección sea blanco */
+            color: white;
         }
         .about-content {
             max-width: 800px;
@@ -264,6 +435,25 @@
                 flex-direction: column;
                 align-items: center;
             }
+            .modal-body {
+                flex-direction: column;
+            }
+            .modal-image {
+                min-width: 100%;
+                max-width: 100%;
+            }
+            .modal-details {
+                padding: 1.5rem;
+            }
+            .modal-details h2 {
+                font-size: 1.5rem;
+            }
+            .modal-cta-buttons {
+                flex-direction: column;
+            }
+            .cta-button {
+                width: 100%;
+            }
         }
     </style>
 </head>
@@ -293,9 +483,8 @@
             <h2 class="section-title">Nuestros Alfajores</h2>
             <div class="products-grid">
                 <!-- Fila 1: Tamaños Normales -->
-                <!-- Alfajor Clásico Normal (EJEMPLO: Bajado un poco - shift-down-20) -->
-                <div class="product-card">
-                    <div class="product-image"> <!-- Agrega aquí la clase para bajar -->
+                <div class="product-card" onclick="openModal('clasico-normal')">
+                    <div class="product-image shift-up-10">
                         <img src="img/alfajor-clasico-normal.jpg" alt="Alfajor Clásico Normal">
                     </div>
                     <div class="product-info">
@@ -306,9 +495,8 @@
                     </div>
                 </div>
 
-                <!-- Alfajor Frambuesa Normal (EJEMPLO: Subido un poco - shift-up-20) -->
-                <div class="product-card">
-                    <div class="product-image shift-up-40"> <!-- Agrega aquí la clase para subir -->
+                <div class="product-card" onclick="openModal('frambuesa-normal')">
+                    <div class="product-image shift-up-40">
                         <img src="img/alfajor-frambuesa-normal.jpg" alt="Alfajor Frambuesa Normal">
                     </div>
                     <div class="product-info">
@@ -319,9 +507,8 @@
                     </div>
                 </div>
 
-                <!-- Alfajor Coco Normal (CENTRADO - sin clase extra) -->
-                <div class="product-card">
-                    <div class="product-image"> <!-- Sin cambio: centrado por defecto -->
+                <div class="product-card" onclick="openModal('coco-normal')">
+                    <div class="product-image">
                         <img src="img/alfajor-coco-normal.jpg" alt="Alfajor Coco Normal">
                     </div>
                     <div class="product-info">
@@ -333,9 +520,8 @@
                 </div>
 
                 <!-- Fila 2: Tamaños Grandes -->
-                <!-- Alfajor Clásico Grande (CENTRADO - sin clase extra) -->
-                <div class="product-card">
-                    <div class="product-image"> <!-- Sin cambio: centrado por defecto -->
+                <div class="product-card" onclick="openModal('clasico-grande')">
+                    <div class="product-image">
                         <img src="img/alfajor-clasico-grande.jpg" alt="Alfajor Clásico Grande">
                     </div>
                     <div class="product-info">
@@ -346,9 +532,8 @@
                     </div>
                 </div>
 
-                <!-- Alfajor Frambuesa Grande (CENTRADO - sin clase extra) -->
-                <div class="product-card">
-                    <div class="product-image"> <!-- Sin cambio: centrado por defecto -->
+                <div class="product-card" onclick="openModal('frambuesa-grande')">
+                    <div class="product-image">
                         <img src="img/alfajor-frambuesa-grande.jpg" alt="Alfajor Frambuesa Grande">
                     </div>
                     <div class="product-info">
@@ -359,9 +544,8 @@
                     </div>
                 </div>
 
-                <!-- Alfajor Coco Grande (CENTRADO - sin clase extra) -->
-                <div class="product-card">
-                    <div class="product-image"> <!-- Sin cambio: centrado por defecto -->
+                <div class="product-card" onclick="openModal('coco-grande')">
+                    <div class="product-image">
                         <img src="img/alfajor-coco-grande.jpg" alt="Alfajor Coco Grande">
                     </div>
                     <div class="product-info">
@@ -374,6 +558,39 @@
             </div>
         </div>
     </section>
+
+    <!-- Modal -->
+    <div id="productModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal()">&times;</span>
+            <div class="modal-body">
+                <div class="modal-image">
+                    <img id="modalImage" src="" alt="">
+                </div>
+                <div class="modal-details">
+                    <div>
+                        <h2 id="modalTitle"></h2>
+                        <div class="modal-size" id="modalSize"></div>
+                        <p class="modal-description" id="modalDescription"></p>
+                        <div class="modal-price" id="modalPrice"></div>
+                    </div>
+                    <div class="modal-cta">
+                        <p>🎉 ¡Hacé tu pedido ahora y disfrutá del mejor sabor casero!</p>
+                        <div class="modal-cta-buttons">
+                            <a href="https://wa.me/5491138637883" target="_blank" class="cta-button">
+                                <svg fill="currentColor" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+                                WhatsApp
+                            </a>
+                            <a href="https://www.instagram.com/quilsweet_" target="_blank" class="cta-button">
+                                <svg fill="currentColor" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+                                Instagram
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 
     <section id="sobre-nosotros" class="about">
         <div class="container">
@@ -417,7 +634,99 @@
     </footer>
 
     <script>
+        // Datos de productos
+        const products = {
+            'clasico-normal': {
+                title: 'Alfajor Clásico',
+                size: 'Tamaño Normal',
+                description: 'El tradicional alfajor relleno de dulce de leche cremoso, cubierto de chocolate. ¡Irresistible! Hecho con ingredientes de primera calidad y preparado artesanalmente para ofrecerte el mejor sabor casero.',
+                price: '$1200 por unidad',
+                image: 'img/alfajor-clasico-normal.jpg'
+            },
+            'frambuesa-normal': {
+                title: 'Alfajor Frambuesa',
+                size: 'Tamaño Normal',
+                description: 'Una explosión de sabor con relleno de frambuesa fresca y dulce de leche. Perfecto para los amantes de las frutas. La combinación perfecta entre lo dulce y lo ácido que te conquistará desde el primer bocado.',
+                price: '$1300 por unidad',
+                image: 'img/alfajor-frambuesa-normal.jpg'
+            },
+            'coco-normal': {
+                title: 'Alfajor Coco',
+                size: 'Tamaño Normal',
+                description: 'Delicioso relleno de coco rallado y dulce de leche, bañado en chocolate blanco. ¡Exótico y crujiente! Una experiencia tropical en cada bocado que te transportará a un paraíso de sabores.',
+                price: '$1500 por unidad',
+                image: 'img/alfajor-coco-normal.jpg'
+            },
+            'clasico-grande': {
+                title: 'Alfajor Clásico',
+                size: 'Tamaño Grande',
+                description: 'El tradicional alfajor relleno de dulce de leche cremoso, cubierto de chocolate. ¡Porción extra de placer! Doble de dulce de leche y tamaño generoso para compartir o disfrutar solo.',
+                price: '$1700 por unidad',
+                image: 'img/alfajor-clasico-grande.jpg'
+            },
+            'frambuesa-grande': {
+                title: 'Alfajor Frambuesa',
+                size: 'Tamaño Grande',
+                description: 'Una explosión de sabor con relleno de frambuesa fresca y dulce de leche. ¡Más sabor en cada bocado! Versión grande para los verdaderos fanáticos de esta deliciosa combinación.',
+                price: '$1800 por unidad',
+                image: 'img/alfajor-frambuesa-grande.jpg'
+            },
+            'coco-grande': {
+                title: 'Alfajor Coco',
+                size: 'Tamaño Grande',
+                description: 'Delicioso relleno de coco rallado y dulce de leche, bañado en chocolate blanco. ¡Exótico y crujiente en gran formato! La versión XL de nuestro alfajor más tropical.',
+                price: '$2000 por unidad',
+                image: 'img/alfajor-coco-grande.jpg'
+            }
+        };
+
+        // Función para abrir el modal
+        function openModal(productId) {
+            const product = products[productId];
+            document.getElementById('modalTitle').textContent = product.title;
+            document.getElementById('modalSize').textContent = product.size;
+            document.getElementById('modalDescription').textContent = product.description;
+            document.getElementById('modalPrice').textContent = product.price;
+            document.getElementById('modalImage').src = product.image;
+            document.getElementById('modalImage').alt = product.title + ' ' + product.size;
+            document.getElementById('productModal').style.display = 'block';
+            document.body.style.overflow = 'hidden'; // Prevenir scroll
+        }
+
+        // Función para cerrar el modal
+        function closeModal() {
+            document.getElementById('productModal').style.display = 'none';
+            document.body.style.overflow = 'auto'; // Restaurar scroll
+        }
+
+        // Cerrar modal al hacer clic fuera de él
+        window.onclick = function(event) {
+            const modal = document.getElementById('productModal');
+            if (event.target == modal) {
+                closeModal();
+            }
+        }
+
+        // Cerrar modal con tecla ESC
+        document.addEventListener('keydown', function(event) {
+            if (event.key === 'Escape') {
+                closeModal();
+            }
+        });
+
         // Smooth scrolling para enlaces de navegación
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
-                e.preventDefault
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+</html>
